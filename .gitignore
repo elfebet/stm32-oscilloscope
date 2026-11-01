@@ -1,3 +1,8 @@
+.DS_Store
 build
-mx.scratch
-!.settings
+
+# IDE & Editors
+.vscode/
+.settings/
+.clangd
+.mxproject
