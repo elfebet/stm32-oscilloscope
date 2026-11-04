@@ -1,4 +1,4 @@
-[Readme EN](README.md) | [Readme UA](README_UA.md)
+[Readme EN](README.md) | [Readme UA](README_UA.md) | [Demo](#демонстрація)
 
 # STM32-осцилограф
 

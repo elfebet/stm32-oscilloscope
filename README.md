@@ -1,4 +1,4 @@
-[Readme UA](README_UA.md) | [Readme EN](README.md)
+[Readme UA](README_UA.md) | [Readme EN](README.md) | [Demo](#demo)
 
 # STM32 Oscilloscope
 
