@@ -1,66 +1,67 @@
-# STM32-осцилограф
+[Readme UA](README_UA.md) | [Readme EN](README.md)
 
-Вбудований цифровий осцилограф на базі STM32F401. Проєкт зчитує аналоговий сигнал через ADC, показує його на кольоровому дисплеї ST7789 та дає змогу змінювати масштаб, режим запуску й параметри тригера за допомогою кнопок і енкодерів.
+# STM32 Oscilloscope
+
+An embedded digital oscilloscope based on the STM32F401. The project reads an analog signal through the ADC, displays it on a ST7789 color display, and lets you adjust the scale, trigger mode, and trigger parameters using buttons and encoders.
 
 ![Present photo](doc/present.jpg)
 
-## Можливості
+## Features
 
-- Відображення сигналу в режимах **Sample**, **Peaks** і **Hi-Res**.
-- Режими тригера **Roll**, **Auto**, **Normal** і **Single**, вибір фронту та позиції тригера.
-- Налаштування масштабу часу від 200 us/div до 5 sec/div (sample rate від 20 Hz до 500 kHz) та масштабу напруги від 50 mV/div до 2 V/div.
-- Переміщення сигналу по вертикалі та налаштування рівня тригера.
-- Вимірювання VDDA за внутрішнім опорним джерелом STM32.
-- Відображення статистики сигналу та продуктивності.
+- Signal display in **Sample**, **Peaks**, and **Hi-Res** modes.
+- **Roll**, **Auto**, **Normal**, and **Single** trigger modes, with selectable edge and trigger position.
+- Time scale from 200 us/div to 5 sec/div (sample rate from 20 Hz to 500 kHz) and voltage scale from 50 mV/div to 2 V/div.
+- Vertical signal positioning and trigger level adjustment.
+- VDDA measurement using the STM32 internal reference.
+- Signal and performance statistics display.
 
-## Апаратна частина
+## Hardware
 
-Проєкт налаштований для STM32F401, дисплея ST7789 з 320×240 та аналогового входу на **PA0 / ADC1_IN0**. Для вимірювання сигналу перед PA0 потрібен аналоговий вхідний каскад: конфігурація розрахована на зовнішній сигнал приблизно в межах ±5 В, який каскад масштабує та зміщує до допустимого діапазону ADC.
+The project is configured for an STM32F401, a 320×240 ST7789V display, and an analog input on **PA0 / ADC1_IN0**. Measuring a signal through PA0 requires an analog input stage: the configuration is designed for an external signal of approximately ±5 V, which the input stage scales and offsets to the ADC's valid range.
 
-> **Увага:** не підключайте до PA0 безпосередньо від’ємну напругу або напругу поза допустимим діапазоном входу ADC. Підключайте сигнал лише через відповідний захисний та узгоджувальний вхідний каскад. Точність вимірювань залежить від його параметрів і калібрування.
+> **Caution:** Do not connect a negative voltage or a voltage outside the ADC input's allowed range directly to PA0. Connect the signal only through an appropriate protection and conditioning input stage. Measurement accuracy depends on its characteristics and calibration.
 
-## Вхідний каскад осцилографа · MCP6022
+## Oscilloscope Input Stage · MCP6022
 
 ![MCP6022 kicad schema](doc/mcp6022-kicad-style.svg)
 
 <img src="doc/mcp6022.png" alt="MCP6022 photo schema" width="250">
 
+### Pin Assignments
 
-### Призначення виводів
-
-| Функція | Виводи STM32 |
+| Function | STM32 Pins |
 |---|---|
-| Аналоговий вхід | PA0 (ADC1_IN0) |
-| Дисплей ST7789, SPI1 | PA5 (SCK), PA7 (MOSI) |
-| Керування дисплеєм | PA2 (DC), PA3 (RST), PA4 (CS), PA6 (BLK) |
-| Кнопки BTN_1–BTN_4 | PB12–PB15 |
-| Енкодер 1 | PB4, PB5; кнопка — PB8 |
-| Енкодер 2 | PB6, PB7; кнопка — PB9 |
+| Analog input | PA0 (ADC1_IN0) |
+| ST7789 display, SPI1 | PA5 (SCK), PA7 (MOSI) |
+| Display control | PA2 (DC), PA3 (RST), PA4 (CS), PA6 (BLK) |
+| Buttons BTN_1–BTN_4 | PB12–PB15 |
+| Encoder 1 | PB4, PB5; button — PB8 |
+| Encoder 2 | PB6, PB7; button — PB9 |
 
-Конфігурацію периферії та контактів також можна переглянути у файлі [stm32-oscilloscope.ioc](stm32-oscilloscope.ioc).
+The peripheral and pin configuration can also be viewed in [stm32-oscilloscope.ioc](stm32-oscilloscope.ioc).
 
-## Керування
+## Controls
 
-| Елемент | Дія |
+| Control | Action |
 |---|---|
-| BTN_1 | Перемкнути режим тригера |
-| BTN_2, коротке натискання | Перемкнути фронт тригера |
-| BTN_2, довге натискання | Змінити позицію тригера: 25%, 50% або 75% |
-| BTN_3, коротке натискання | Запустити або зупинити вимірювання |
-| BTN_3, довге натискання | Скинути налаштування |
-| BTN_4, коротке натискання | Перемкнути режим відображення сигналу |
-| BTN_4, довге натискання | Перемкнути режим малювання хвиль |
-| Енкодер 1 | Змінити V/div або вертикальне положення |
-| Кнопка енкодера 1 | Перемкнути режим енкодера; довге натискання скидає вертикальне положення |
-| Енкодер 2 | Змінити Time/div або рівень тригера |
-| Кнопка енкодера 2 | Перемкнути режим енкодера; довге натискання скидає рівень тригера |
+| BTN_1 | Switch trigger mode |
+| BTN_2, short press | Switch trigger edge |
+| BTN_2, long press | Change trigger position: 25%, 50%, or 75% |
+| BTN_3, short press | Start or stop acquisition |
+| BTN_3, long press | Reset settings |
+| BTN_4, short press | Switch signal display mode |
+| BTN_4, long press | Switch waveform drawing mode |
+| Encoder 1 | Adjust V/div or vertical position |
+| Encoder 1 button | Switch encoder mode; long press resets vertical position |
+| Encoder 2 | Adjust Time/div or trigger level |
+| Encoder 2 button | Switch encoder mode; long press resets trigger level |
 
-## Розробка
+## Development
 
-Проєкт робився в VSCode з stm32-vscode-extension, з використанням CMake 3.22.
-Для дебагінгу з stm32, використовувався SWD-сумісний програматор, наприклад ST-LINK V2.
+The project was developed in VSCode using the stm32-vscode-extension and CMake 3.22.
+An SWD-compatible programmer, such as an ST-LINK V2, was used for debugging the STM32.
 
-## Демонстрація
+## Demo
 
 ![Schema photo](doc/schema.jpg)
 
