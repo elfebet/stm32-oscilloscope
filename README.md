@@ -23,7 +23,7 @@
 
 ![MCP6022 kicad schema](doc/mcp6022-kicad-style.svg)
 
-![MCP6022 photo schema](doc/mcp6022.png)
+<img src="doc/mcp6022.png" alt="MCP6022 photo schema" width="250">
 
 
 ### Призначення виводів
