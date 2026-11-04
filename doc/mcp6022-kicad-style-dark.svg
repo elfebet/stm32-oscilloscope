@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="920" viewBox="0 0 1400 920">
+  <defs>
+    <style>
+      text { font-family: Arial, sans-serif; fill: #e6edf3; }
+      .title { font-size: 26px; font-weight: 700; }
+      .subtitle { font-size: 15px; fill: #aab7c4; }
+      .label { font-size: 16px; }
+      .value { font-size: 15px; }
+      .small { font-size: 13px; fill: #aab7c4; }
+      .ref { font-size: 15px; font-weight: 700; }
+      .wire { fill: none; stroke: #e6edf3; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      .symbol { fill: #0d1b28; stroke: #e6edf3; stroke-width: 2.5; stroke-linejoin: round; }
+      .node { fill: #e6edf3; }
+      .frame { fill: none; stroke: #718096; stroke-width: 1.2; }
+      .note { fill: #0d1b28; stroke: #526273; stroke-width: 1.2; }
+    </style>
+    <marker id="openArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M1 1 L8 5 L1 9" fill="none" stroke="#e6edf3" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="920" fill="#07111b"/>
+
+  <!-- REF divider -->
+  <text x="92" y="138" class="label">+3V3</text>
+  <path d="M130 148 V171" class="wire"/>
+  <path d="M130 171 L118 181 L142 193 L118 205 L142 217 L130 227" class="wire"/>
+  <path d="M130 227 V247" class="wire"/>
+  <text x="160" y="193" class="ref">R1</text>
+  <text x="160" y="213" class="value">10 kΩ</text>
+
+  <path d="M130 247 L118 257 L142 269 L118 281 L142 293 L130 303" class="wire"/>
+  <path d="M130 303 V330" class="wire"/>
+  <text x="160" y="270" class="ref">R2</text>
+  <text x="160" y="290" class="value">6,8 kΩ</text>
+
+  <circle cx="130" cy="330" r="5" class="node"/>
+  <text x="82" y="322" text-anchor="end" class="ref">REF</text>
+  <text x="82" y="342" text-anchor="end" class="small">≈1,220 V</text>
+
+  <path d="M130 330 V357" class="wire"/>
+  <path d="M130 357 L118 367 L142 379 L118 391 L142 403 L130 413" class="wire"/>
+  <path d="M130 413 V435" class="wire"/>
+  <text x="160" y="377" class="ref">R3</text>
+  <text x="160" y="397" class="value">10 kΩ</text>
+  <path d="M112 435 H148 M118 443 H142 M130 443 V457" class="wire"/>
+  <text x="130" y="479" text-anchor="middle" class="small">GND</text>
+
+  <path d="M130 330 H274 V384" class="wire"/>
+  <path d="M258 384 H290 M258 394 H290 M274 394 V435" class="wire"/>
+  <path d="M256 435 H292 M262 443 H286 M274 443 V457" class="wire"/>
+  <text x="290" y="372" text-anchor="middle" class="ref">C1</text>
+  <text x="300" y="420" text-anchor="middle" class="value">100 nF</text>
+  <text x="274" y="479" text-anchor="middle" class="small">GND</text>
+  <path d="M130 330 H358 V350 H420" class="wire"/>
+  <text x="342" y="345" text-anchor="middle" class="small">REF</text>
+
+  <!-- U1A unity-gain buffer -->
+  <path d="M420 255 L420 425 L590 340 Z" class="symbol"/>
+  <text x="470" y="341" text-anchor="middle" class="ref">U1A</text>
+  <text x="430" y="302" class="label">−</text>
+  <text x="430" y="357" class="label">+</text>
+  <text x="410" y="280" text-anchor="end" class="small">2</text>
+  <text x="410" y="370" text-anchor="end" class="small">3</text>
+  <text x="596" y="334" class="small">1</text>
+  <path d="M420 290 H395 V213 H610 V340 H590" class="wire"/>
+  <circle cx="610" cy="340" r="5" class="node"/>
+  <text x="500" y="202" text-anchor="middle" class="small">U1A: повторювач (pin 1 з'єднаний з pin 2)</text>
+
+  <!-- Buffered REF to U1B non-inverting input -->
+  <path d="M610 340 H680 V535 H730" class="wire"/>
+  <circle cx="680" cy="340" r="5" class="node"/>
+  <text x="690" y="495" class="small">REF</text>
+  <text x="690" y="510" class="small">buffer</text>
+
+  <!-- Signal input and inverting amplifier -->
+  <text x="54" y="546" class="label">SIGNAL</text>
+  <path d="M118 540 H178" class="wire" marker-end="url(#openArrow)"/>
+  <path d="M178 540 H205" class="wire"/>
+  <path d="M205 540 L217 528 L229 552 L241 528 L253 552 L265 528 L277 540" class="wire"/>
+  <path d="M277 540 H730 V455" class="wire"/>
+  <text x="241" y="510" text-anchor="middle" class="ref">R4</text>
+  <text x="241" y="574" text-anchor="middle" class="value">100 kΩ</text>
+
+  <path d="M730 400 L730 590 L960 495 Z" class="symbol"/>
+  <text x="790" y="501" text-anchor="middle" class="ref">U1B</text>
+  <text x="740" y="442" class="label">−</text>
+  <text x="740" y="527" class="label">+</text>
+  <text x="710" y="436" text-anchor="end" class="small">6</text>
+  <text x="710" y="525" text-anchor="end" class="small">5</text>
+  <text x="966" y="489" class="small">7</text>
+  <circle cx="730" cy="455" r="5" class="node"/>
+
+  <!-- Feedback resistor string -->
+  <path d="M730 455 V350 H770" class="wire"/>
+  <path d="M770 350 L782 338 L794 362 L806 338 L818 362 L830 338 L842 350" class="wire"/>
+  <path d="M842 350 H870" class="wire"/>
+  <path d="M870 350 L882 338 L894 362 L906 338 L918 362 L930 338 L942 350" class="wire"/>
+  <path d="M942 350 H1000 V495 H960" class="wire"/>
+  <circle cx="1000" cy="495" r="5" class="node"/>
+  <text x="806" y="320" text-anchor="middle" class="ref">R5</text>
+  <text x="806" y="382" text-anchor="middle" class="value">22 kΩ</text>
+  <text x="906" y="320" text-anchor="middle" class="ref">R6</text>
+  <text x="906" y="382" text-anchor="middle" class="value">6,8 kΩ</text>
+  <text x="854" y="407" text-anchor="middle" class="small">Rfb = 28,8 kΩ</text>
+
+  <!-- ADC output -->
+  <path d="M1000 495 H1050" class="wire"/>
+  <path d="M1050 495 L1062 483 L1074 507 L1086 483 L1098 507 L1110 483 L1122 495" class="wire"/>
+  <path d="M1122 495 H1202" class="wire" marker-end="url(#openArrow)"/>
+  <text x="1086" y="464" text-anchor="middle" class="ref">R7</text>
+  <text x="1086" y="530" text-anchor="middle" class="value">1 kΩ</text>
+  <text x="1212" y="501" class="label">PA0 / ADC</text>
+
+  <!-- Power and bypass capacitor -->
+  <rect x="1038" y="130" width="290" height="260" rx="4" class="note"/>
+  <text x="1058" y="160" class="ref">Живлення U1</text>
+  <text x="1058" y="190" class="label">+3V3 → pin 8 (VDD)</text>
+  <text x="1058" y="218" class="label">GND → pin 4 (VSS)</text>
+  <text x="1058" y="253" class="small">C2 розміщений біля MCP6022:</text>
+  <text x="1058" y="273" class="small">100 nF між +3V3 та GND</text>
+  <text x="1155" y="296" text-anchor="middle" class="label">+3V3</text>
+  <path d="M1155 304 V322 M1139 322 H1171 M1139 332 H1171 M1155 332 V348" class="wire"/>
+  <path d="M1137 348 H1173 M1143 356 H1167 M1155 356 V360" class="wire"/>
+  <text x="1190" y="332" class="ref">C2</text>
+  <text x="1190" y="352" class="value">100 nF</text>
+  <text x="1155" y="379" text-anchor="middle" class="small">GND</text>
+
+  <!-- Summary / measured data -->
+  <rect x="52" y="610" width="1276" height="162" rx="4" class="note"/>
+  <text x="76" y="643" class="ref">Фактичні параметри</text>
+  <text x="76" y="673" class="label">Av ≈ −Rfb / Rin = −28,8 kΩ / 100 kΩ ≈ −0,290</text>
+  <text x="76" y="700" class="label">Виміряно на pin 7: Vout ≈ 1,575 В − 0,290 · VIN</text>
+  <text x="76" y="732" class="small">Початковий розрахунок: REF 1,65 В і gain −0,3; у зібраній схемі REF ≈1,220 В та gain ≈−0,290.</text>
+  <text x="76" y="755" class="small">Земля джерела SIGNAL спільна з GND схеми. MCP6022 живиться від 3,3 В</text>
+</svg>
