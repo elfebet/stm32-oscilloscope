@@ -63,8 +63,8 @@ An SWD-compatible programmer, such as an ST-LINK V2, was used for debugging the 
 
 ## Demo
 
-![Schema photo](doc/schema.jpg)
-
 https://github.com/user-attachments/assets/ee0afcc1-41f9-4acb-b422-a945901ddf54
+
+![Schema photo](doc/schema.jpg)
 
 ![Present photo](doc/present.jpg)
